@@ -1,0 +1,7 @@
+{
+  "name": "where",
+  "short_name": "where",
+  "description": "Where is a community platform of rent and instant booking private rooms for a maximal duration  of 24 hours",
+  "start_url": "/",
+  "display": "standalone"
+}
