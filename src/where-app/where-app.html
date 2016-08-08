@@ -3,16 +3,454 @@
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="where-app">
   <template>
-    <style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
       :host {
+        box-sizing: border-box;
         display: block;
+        position: relative;
+        height: 100vh;
+        font-family: 'Roboto', Georgia, Serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #E5E8F1;
+        --my-border-bottom: {
+        border-bottom: 2px solid rgba(44, 62, 80,1.0);
+        }
       }
+
+
+      paper-header-panel{
+        background-color: #34495e;
+        padding: 0;
+      }
+
+
+      paper-toolbar{
+        background-color: #c0392b;
+      }
+
+
+      paper-toolbar .subnav{
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
+      }
+
+
+      paper-toolbar .subnav div{
+        margin: 0 10px;
+      }
+
+
+      .subnav div a{
+        border: 2px solid #fff;
+        border-radius: 3px;
+        padding: 10px;
+        text-decoration: none;
+        color: var(--link-a, #E5E8F1);
+      }
+
+
+      .subnav div:nth-child(2){
+        border-left: 2px solid #fff;
+      }
+
+
+      main{
+        @apply(--layout-horizontal);
+        height: 100%;
+      }
+
+      main .sidenav{
+        @apply(--layout-flex-1);
+        border-right: 2px solid rgba(52, 73, 94,0.4);
+        box-shadow: 0 1px 7px #000;
+        width: auto;
+        overflow: hidden;
+      }
+
+      main .sidenav div{
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        width: 100%;
+      }
+
+      main .search{
+        padding: 10px;
+        @apply(--my-border-bottom);
+      }
+      
+      main .filters{
+        padding: 10px;
+        @apply(--my-border-bottom);
+      }
+      main .wishs{
+        padding: 10px;
+        @apply(--my-border-bottom);
+      }
+      main .currencies{
+        padding: 10px;
+        @apply(--my-border-bottom);
+      }
+      main .mores{
+        padding: 10px;
+        @apply(--my-border-bottom);
+      }
+      main .get-app{
+        padding-top: 10px;
+        @apply(--layout-center-justified);
+      }
+      main .get-app ul{
+        padding: 0;
+      }
+      main .get-app li{
+        list-style: none;
+        padding-top: 5px;
+      }
+      main .footer-bot{
+        @apply(--layout-flex);
+        position: absolute;
+        bottom: 5px;
+        padding: 5px 10px;      
+        font-size: 14px;
+        font-weight: 300;
+      }
+
+    .sidenav .social{
+      @apply(--layout-flex);
+      position: relative;
+      vertical-align: center;
+      top: 10px;
+      margin-bottom: 10px; 
+      padding: 10px;    }
+    .sidenav .social a{
+      text-decoration: none;
+      padding: 10px;
+      height: 10px;
+      width: 10px;
+      border: 1px solid #fff;
+      border-radius:50%;
+
+    }
+    .sidenav .social a i{
+      line-height: 20px;
+    }
+      
+      main .main-content{
+        width: 55%;
+        overflow-y: scroll;
+        border-right: 2px solid rgba(255,255,255, 0.1);
+        padding: 10px;
+      }
+
+      main .maps{
+        width: 30%;
+      }
+
+      paper-card{
+        --paper-card-background-color: rgba(0, 0, 0,.2);
+        --paper-card-header-color: #E5E8F1;
+        color: #E5E8F1;
+        font-size: 14px;
+        font-weight: 100;
+        --paper-card: {
+          width: 320px;
+          margin: 10px;
+        };
+      }
+      @media screen and (max-width: 600px){
+        :host{
+          height: 100%;
+        }
+        
+        main .sidenav{
+          width: 64px;
+        }
+
+        main .sidenav a span{
+        visibility: hidden;
+       }
+
+
+        paper-card{
+        --paper-card: {
+          width: 320px;
+          margin: 0 0 10px 0;
+        };
+      }
+    }
+
+
+
+
+
+
+      paper-card .card-title img{
+        width: 100%;
+      }
+      paper-card .card-actions{
+        font-weight: 500;
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+      paper-card .card-actions .pricing{
+        line-height: 50px;
+        position: relative;
+        @apply(--layout-center);
+      }
+      paper-card .card-content{
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+        border-bottom: 1px solid #fff;
+        padding: 0 20px;
+      }
+
+      paper-card .card-content .namePost{
+        line-height: 36px;
+      }
+      paper-card .description{
+        padding: 0 10px;
+      }
+      paper-card .address{
+        font-size: 14px;
+        font-weight: 300;
+        padding: 10px; 
+      }
+      paper-button{  
+       --paper-button: {
+        background-color: #c0392b;
+        margin: 0;
+       };
+       --paper-button-ink-color : #c0392b;
+      }
+
+
     </style>
 
+
+    <paper-header-panel class="flex">
+
+
+      <paper-toolbar>
+
+        <div>
+          WHERE
+        </div>
+
+        <div class="subnav">
+          <div><a href="options.html">Become Host</a></div>
+          <div></div>
+          <div>
+          <span>Aaron D.</span>
+          </div>
+        </div>
+
+      </paper-toolbar>
+
+
+
+      <main>
+        <div class="sidenav">
+          <div class="search">
+            <a><paper-icon-button icon="search"></paper-icon-button><span>Search</span></a>
+          </div>
+          <div class="filters">
+            <a><paper-icon-button icon="filter-list"></paper-icon-button><span>Filters</span></a>
+          </div>
+          <div class="wishs">
+          <a><paper-icon-button icon="favorite"></paper-icon-button><span>Favorite</span></a>
+          </div>
+          <div class="currencies">
+          <a><paper-icon-button icon="account-balance-wallet"></paper-icon-button><span>Currency</span></a>
+          </div>
+          <div class="mores">
+          <a><paper-icon-button icon="help"></paper-icon-button><span>More</span></a>
+          </div>
+          <div class="get-app">
+          <span>Get App</span>
+          <!-- <ul>
+            <li><a href="#"><img src="appstore.png"></a></li>
+            <li><a href="#"><img src="googleplay.png"></a></li>
+          </ul>
+          -->
+          </div>
+          <!--
+          <div class="social">
+            <a><i class="ion-social-twitter"></i></a>
+            <a><i class="ion-social-facebook"></i></a>
+            <a><i class="ion-social-youtube"></i></a>
+          </div>-->
+
+          <div class="footer-bot">Where, Inc. <br>Coyright 2016 | <br>All right reserved</div>
+        </div>
+
+        <div class="main-content">
+        <div class="grid">
+ 
+        <paper-card>
+          <div class="card-title">
+            <img src="439b54b4_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon="share"></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="0766c5e8_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="ccabaf77_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="d2aec549_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="0d20d386_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+
+        <paper-card>
+          <div class="card-title">
+            <img src="68f92799_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="bf079c42_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-title">
+            <img src="1ec428ce_original.jpg">
+          </div>
+          <div class="card-content">
+              <div class="namePost">Name's house</div>
+              <div><paper-icon-button icon=""></paper-icon-button></div>
+          </div>
+          <div class="description">
+            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
+          </div>
+          <div class="address">Adresse</div>
+          <div class="card-actions">
+            <div class="pricing">1000p/night</div>
+            <paper-button raised>Reserve</paper-button>
+          </div>
+        </paper-card>
+
+        </div>
+        
+      </main>
+
+
+      <div class="maps"></div>
+
+
+    </paper-header-panel>
 
 
   </template>
