@@ -9,6 +9,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="options.html">
 
 <dom-module id="where-app">
   <template>
@@ -248,7 +250,7 @@
         </div>
 
         <div class="subnav">
-          <div><a href="options.html">Become Host</a></div>
+          <div><a href="#/options">Become Host</a></div>
           <div></div>
           <div>
           <span>Aaron D.</span>
@@ -453,12 +455,31 @@
     </paper-header-panel>
 
 
+
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route route="{{route}}" 
+               pattern="/options" 
+               data="{{data}}" 
+               tail="{{optionTail}}
+               active="{{optionActive}}">
+    </app-route>
+
+
+
   </template>
 
   <script>
     Polymer({
 
       is: 'where-app',
+      ready: function() {
+        this.async(function() {
+          // If the path is blank, redirect to /
+          if (!this.route.path) {
+            this.set('route.path', '/');
+          }
+        });
+      }
 
       properties: {
         
