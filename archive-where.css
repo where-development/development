@@ -1,0 +1,35 @@
+
+
+      
+      
+
+      
+     app-header-layout .main-content{
+      display: flex;
+      @apply(--layout-justified);
+     }
+
+     app-toolbar user-data{
+      display: none;
+    }
+    engine-data{
+      display: none;
+    }
+
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    paper-item.userDataPaper, user-data{
+      display: none;
+    }
+    app-toolbar user-data{
+      display: flex;
+    }
+  }
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    paper-item.userDataPaper, user-data{
+      display: flex;
+    }
+    app-toolbar user-data{
+      display: none;
+    }
+  }
+  }

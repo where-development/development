@@ -1,0 +1,141 @@
+:host{
+        height: 100vh;
+        font-family: 'Roboto', 'Century Gothic';
+        --font-color: {
+          color:#fff;
+          font-family: 'Roboto';
+          font-weight: 300;
+          font-size: 14px;
+        };
+      }
+       app-drawer {
+        @apply(--font-color);
+        --app-drawer-content-container: {
+          box-shadow: 1px 0 2px 1px rgba(0,0,0,0.18);
+          background-color: rgba(53,57,66,1.0);
+
+        }
+        --app-drawer-scrim-background: rgba(53, 57, 66, 0.5);
+        --app-drawer-width: 140px;
+      }
+      app-drawer app-toolbar {
+        background-color: #2babb4;
+        height: 100px;
+        color: #fff;
+      }
+
+      app-toolbar {
+        background-color: rgba(53,57,66,1.0);
+        @apply(--font-color);
+      }
+
+      div.title_get-app{
+        display: flex;
+        @apply(--layout-center-justified);
+        position: relative;
+        margin-top: 20px;
+        text-transform: uppercase;
+      }
+
+     div.get-app{
+        display: flex;
+        position: relative;
+        left: -30px;
+      }
+      app-drawer ul{
+        list-style: none;
+      }
+      app-drawer ul img{
+        width: 120px;
+        height: auto;
+      }
+
+      app-drawer div.brand{
+        @apply(--layout-flex);
+        right: 25px;
+        position: absolute;
+        bottom: 100px;
+        margin-bottom: 15px;     
+        font-size: 14px;
+        font-weight: 300;
+      }
+      div.social{
+        right: 25px;
+        position: absolute;
+        bottom: 180px;
+        margin-bottom: 15px;
+      }
+      div.social ul{
+        display: flex;
+        apply(--layout-horizontal);
+      }
+      div.social li{
+        margin: 20px;
+      }
+      div.social i{
+        background-color: #2babb4;
+        font-size: 18px;
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        @apply(--layout-center-justified);
+        @apply(--layout-center);
+        border: 1px solid rgba(53,57,66,1.0);
+        padding: 5px;
+        border-radius: 50%;
+      }
+      div.social i:hover{
+        background-color: transparent;
+        border: 1px solid #fff;
+      }
+
+      paper-item{
+        --paper-item: {
+          @apply(--font-color);
+          border-bottom: 1px solid rgba(44,48,57,1.0);
+          box-shadow: 1px 0 1px 0.5px rgba(0,0,0,0.18);
+        };
+      }
+      paper-item a{
+        @apply(--font-color);
+        text-decoration: none;
+      }
+      iron-icon, i{
+        font-size: 22px;
+        @apply(--layout-center);
+        --iron-icon-fill-color: #c1c6cc;
+        --iron-icon-width: 22px;
+        --iron-icon-height: 22px;
+        margin-right: 5px;
+
+      }
+     app-header-layout .main-content{
+      display: flex;
+      @apply(--layout-justified);
+     }
+
+     app-toolbar user-data{
+      display: none;
+    }
+    engine-data{
+      display: none;
+    }
+
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    paper-item.userDataPaper, user-data{
+      display: none;
+    }
+    app-toolbar user-data{
+      display: flex;
+    }
+  }
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    paper-item.userDataPaper, user-data{
+      display: flex;
+    }
+    app-toolbar user-data{
+      display: none;
+    }
+  }
+  }

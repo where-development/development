@@ -15,7 +15,7 @@
    id="svg5306"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="loogo-mini.svg">
+   sodipodi:docname="where_logo-mini.svg">
   <defs
      id="defs5308" />
   <sodipodi:namedview
@@ -25,16 +25,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1101562"
-     inkscape:cx="180.96095"
-     inkscape:cy="520"
+     inkscape:zoom="2.4111205"
+     inkscape:cx="128.81317"
+     inkscape:cy="527.99354"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="961"
-     inkscape:window-x="1358"
-     inkscape:window-y="-8"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="248"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5311">
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,7 +53,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#36495e;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#2babb4;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5854"
        width="228.79662"
        height="199.07108"
@@ -61,16 +61,29 @@
        y="435.33194" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-200.09636"
-       y="628.14032"
+       style="font-style:normal;font-weight:normal;font-size:90.41856384px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#2babb4;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-208.21213"
+       y="632.03583"
        id="text5856"
        sodipodi:linespacing="125%"
-       transform="matrix(0.87274613,-0.48817435,0.48817435,0.87274613,0,0)"><tspan
+       transform="matrix(0.88553666,-0.48112325,0.49532879,0.86014034,0,0)"><tspan
          sodipodi:role="line"
          id="tspan5858"
-         x="-200.09636"
-         y="628.14032"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:187.5px;font-family:'Montserrat Subrayada';-inkscape-font-specification:'Montserrat Subrayada';fill:#ffffff">w</tspan></text>
+         x="-208.21213"
+         y="632.03583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:188.37200928px;font-family:'Montserrat Subrayada';-inkscape-font-specification:'Montserrat Subrayada';fill:#ffffff;fill-opacity:1" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:96.99399567px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-234.63229"
+       y="623.91229"
+       id="text4136"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.83705691,-0.54129455,0.53309832,0.84992642,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="-234.63229"
+         y="623.91229"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:193.98799133px;font-family:'Montserrat Subrayada';-inkscape-font-specification:'Montserrat Subrayada';fill:#ffffff">w</tspan></text>
   </g>
 </svg>

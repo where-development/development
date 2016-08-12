@@ -1,0 +1,236 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="engine-data">
+	<template>
+	
+	<style is="custom-style" include="iron-flex iron-flex-alignment">
+
+	:host{
+		--color-filter: {color: #919296;}
+	}
+
+	i{
+		font-size: 18px;
+	}
+
+	main{
+		width: 240px;
+		background-color: rgba(241, 243, 242, 1.0);
+		margin: 0;
+		padding-bottom: 20px;
+		@apply(--color-filter);
+		display: flex;
+		@apply(--layout-stretch);
+		font-size: 15px;
+		box-shadow: 0 1px 2px 1px rgba(0,0,0,0.18);
+		font-family: 'Roboto';
+	}
+	main div{
+		display: flex;
+		@apply(--layout-vertical);
+		@apply(--color-filter);
+	}
+	main div .priority, .price, .room-type, .size, .amneties, .propertyType{
+		margin: 10px;
+		@apply(--color-filter);
+		font-family: 'Roboto';
+	}
+	main div.titleFilter{
+		background-color: #2babb4;
+		color: #fff;
+	}
+	main div.titleFilter h4{
+		display: flex;
+		@apply(--layout-center-justified);
+		font-weight: 400;
+	}
+
+	main div.titleFilter h4 span{
+		margin-right: 10px;
+	}
+
+	ul.paper-drop-menu{
+		display: flex;
+		@apply(--layout-horizontal);
+		@apply(--layout-wrap);
+		margin: 3px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+	}
+	ul.paper-drop-menu li{
+		margin: 3px;
+	}
+
+	paper-dropdown-menu {
+	--paper-dropdown-menu:{
+		border: 2px solid #919296;
+		border-radius: 2px;
+		width: 100px;
+		padding: 0;
+		font-size: 16px;
+	};
+	--paper-input-container-focus-color: none;
+	--paper-input-container-color: #919296;
+    --paper-input-container-label: {
+      @apply(--color-filter);
+      text-align: center;
+      font-size: 14px;
+    };
+    --paper-input-container-input: {
+    	font-family: 'Roboto';
+      	color: #919296;
+      	font-style: normal;
+      	font-family: 'Roboto';
+      	font-size: 14px;
+      	text-transform: uppercase;
+      	margin-left: 10px;
+    };
+    --paper-input-container: {
+    	color: #919296;
+    	font-family: 'Roboto';
+    };
+    --paper-input-container-disabled: {
+    	color: #919296;
+    	font-family: 'Roboto';
+    };
+    --paper-input-container-focus-color: none;
+    /* no underline */
+    --paper-input-container-underline: {
+      display: none;
+    };
+  }
+  	paper-checkbox{
+  		margin-top: 5px;
+  		--paper-checkbox-unchecked-color: #919296;
+  		--paper-checkbox-checked-color: #2babb4;
+    	--paper-checkbox-label-color: #919296;
+    	--paper-checkbox-size:15px;
+    	--paper-slider-knob-color:#2babb4;
+    }
+    paper-slider{
+    	margin-top: 25px;
+    	--paper-slider-active-color:#2babb4;
+    	--paper-slider-container-color:#2babb4;
+    	 --paper-slider-knob-color: #2babb4;
+    	 --paper-slider-pin-start-color: #2babb4;
+    	 --paper-slider-pin-color: #2babb4;
+    }
+    paper-radio-button{
+    	--paper-radio-button-unchecked-color: #919296;
+    	--paper-radio-button-checked-color: #2babb4;
+    	--paper-radio-button-label-color: #919296;
+    }
+    paper-radio-group{
+    	--paper-radio-group-item-padding: 5px;
+    }
+    .fistName{
+    	font-weight: bold;
+    }
+
+		
+	</style>
+	<main>
+		<div>
+			<div class="titleFilter"><h4><span>TOP FILTERS</span><i class="ion-android-options"></i></h4></div>
+
+			<div class="priority">
+				<div class="fistName">PRIORITY</div>
+				<paper-checkbox>Around me</paper-checkbox>
+				<paper-checkbox>Available offers</paper-checkbox>
+				<paper-checkbox>Offer occupied</paper-checkbox>
+			</div>
+			<div class="price">
+				<div class="fistName">PRICE</div>
+				<paper-slider pin value="20"></paper-slider>
+			</div>
+
+			<div class="room-type">
+				<div class="fistName">ROOM TYPE</div>
+				<paper-radio-group selected="a" aria-labelledby="_room-type">
+				  <paper-radio-button name="a">Entire Home</paper-radio-button>
+				  <paper-radio-button name="b">Private Room</paper-radio-button>
+				  <paper-radio-button name="c">Shared Room</paper-radio-button>
+				</paper-radio-group>
+			</div>
+
+			<div class="size">
+				<div class="fistName">SIZE</div>
+				<ul class="paper-drop-menu">
+					<li>
+					<paper-dropdown-menu class="bedrooms" label="Bedroom" no-label-float>
+					  <paper-listbox class="dropdown-content">
+					    <paper-item>1</paper-item>
+					    <paper-item>2</paper-item>
+					    <paper-item>3</paper-item>
+					    <paper-item>4</paper-item>
+					    <paper-item>5</paper-item>
+					  </paper-listbox>
+					</paper-dropdown-menu>
+					</li>
+					<li>
+					<paper-dropdown-menu class="bathrooms" label="Bathrooms" no-label-float>
+					  <paper-listbox class="dropdown-content">
+					    <paper-item>1</paper-item>
+					    <paper-item>2</paper-item>
+					    <paper-item>3</paper-item>
+					    <paper-item>4</paper-item>
+					    <paper-item>5</paper-item>
+					  </paper-listbox>
+					</paper-dropdown-menu>
+					</li>
+					<li>
+					<paper-dropdown-menu class="beds" label="Beds" no-label-float>
+					  <paper-listbox class="dropdown-content">
+					    <paper-item>1</paper-item>
+					    <paper-item>2</paper-item>
+					    <paper-item>3</paper-item>
+					    <paper-item>4</paper-item>
+					    <paper-item>5</paper-item>
+					  </paper-listbox>
+					</paper-dropdown-menu>
+					</li>
+				</ul>
+			</div>
+
+			<div class="amneties">
+			<div class="fistName">AMENTIES</div>
+				<paper-checkbox>WI-FI</paper-checkbox>
+				<paper-checkbox>Kitchen</paper-checkbox>
+				<paper-checkbox>Air Conditioning</paper-checkbox>
+			</div>
+
+			<div class="propertyType">
+				<div class="fistName">PROPERTY TYPE</div>
+				<paper-checkbox>Apartement</paper-checkbox>
+				<paper-checkbox>House</paper-checkbox>
+				<paper-checkbox>Villa</paper-checkbox>
+				<paper-checkbox>Townhouse</paper-checkbox>
+				<paper-checkbox>Dorm</paper-checkbox>
+				<paper-checkbox>Other</paper-checkbox>
+			</div>
+	</main>
+	</template>
+	<script>
+		Polymer({
+			is: 'engine-data',
+			properties: {
+			},
+		});
+
+		
+	</script>
+</dom-module>

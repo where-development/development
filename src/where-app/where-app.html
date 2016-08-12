@@ -11,453 +11,507 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
-<link rel="import" href="options.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="../../bower_components/iron-iconset/iron-iconset.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="costum-icons.html">
+<link rel="import" href="grid-data.html">
+<link rel="import" href="user-data.html">
+<link rel="import" href="engine-data.html">
+<link rel="import" href="become-host.html">
+
 
 <dom-module id="where-app">
   <template>
     <style is="custom-style" include="iron-flex iron-flex-alignment">
-      :host {
-        box-sizing: border-box;
-        display: block;
-        position: relative;
-        height: 100vh;
-        font-family: 'Roboto', Georgia, Serif;
-        font-size: 16px;
-        font-weight: 400;
-        color: #E5E8F1;
-        --my-border-bottom: {
-        border-bottom: 2px solid rgba(44, 62, 80,1.0);
+    /* for main element - mobile first*/
+      :host{
+        font-family: 'Roboto', 'Century Gothic';
+        --font-color: {
+          color:#fff;
+          font-family: 'Roboto';
+          font-weight: 200;
+          font-size: 13px;
+        };
+      }
+      /*for engine-data to hide element*/
+      engine-data{
+        display: none;
+      }
+
+      div.main-content{
+        display: flex;
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+
+      app-toolbar user-data{
+        display: none;
+      }
+      /* for drawer element*/
+      app-drawer {
+        @apply(--font-color);
+        --app-drawer-content-container: {
+          box-shadow: 1px 0 2px 1px rgba(0,0,0,0.18);
+          background-color: rgba(53,57,66,1.0);
+
         }
+        --app-drawer-scrim-background: rgba(53, 57, 66, 0.5);
+        --app-drawer-width: 140px;
       }
-
-
-      paper-header-panel{
-        background-color: #34495e;
-        padding: 0;
+      app-drawer app-toolbar {
+        background-color: #2babb4;
+        height: 100px;
+        color: #fff;
       }
-
-
-      paper-toolbar{
-        background-color: #c0392b;
+      app-toolbar {
+        background-color: rgba(53,57,66,1.0);
+        @apply(--font-color);
       }
-
-
-      paper-toolbar .subnav{
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
-        @apply(--layout-end-justified);
-      }
-
-
-      paper-toolbar .subnav div{
-        margin: 0 10px;
-      }
-
-
-      .subnav div a{
-        border: 2px solid #fff;
-        border-radius: 3px;
-        padding: 10px;
-        text-decoration: none;
-        color: var(--link-a, #E5E8F1);
-      }
-
-
-      .subnav div:nth-child(2){
-        border-left: 2px solid #fff;
-      }
-
-
-      main{
-        @apply(--layout-horizontal);
-        height: 100%;
-      }
-
-      main .sidenav{
-        @apply(--layout-flex-1);
-        border-right: 2px solid rgba(52, 73, 94,0.4);
-        box-shadow: 0 1px 7px #000;
-        width: auto;
-        overflow: hidden;
-      }
-
-      main .sidenav div{
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
-        width: 100%;
-      }
-
-      main .search{
-        padding: 10px;
-        @apply(--my-border-bottom);
-      }
-      
-      main .filters{
-        padding: 10px;
-        @apply(--my-border-bottom);
-      }
-      main .wishs{
-        padding: 10px;
-        @apply(--my-border-bottom);
-      }
-      main .currencies{
-        padding: 10px;
-        @apply(--my-border-bottom);
-      }
-      main .mores{
-        padding: 10px;
-        @apply(--my-border-bottom);
-      }
-      main .get-app{
-        padding-top: 10px;
-        @apply(--layout-center-justified);
-      }
-      main .get-app ul{
-        padding: 0;
-      }
-      main .get-app li{
+      /*app drawer styling*/
+      app-drawer ul{
         list-style: none;
-        padding-top: 5px;
       }
-      main .footer-bot{
-        @apply(--layout-flex);
-        position: absolute;
-        bottom: 5px;
-        padding: 5px 10px;      
-        font-size: 14px;
-        font-weight: 300;
+      app-drawer ul img{
+        width: 120px;
+        height: auto;
       }
-
-    .sidenav .social{
-      @apply(--layout-flex);
-      position: relative;
-      vertical-align: center;
-      top: 10px;
-      margin-bottom: 10px; 
-      padding: 10px;    }
-    .sidenav .social a{
-      text-decoration: none;
-      padding: 10px;
-      height: 10px;
-      width: 10px;
-      border: 1px solid #fff;
-      border-radius:50%;
-
-    }
-    .sidenav .social a i{
-      line-height: 20px;
-    }
-      
-      main .main-content{
-        width: 55%;
-        overflow-y: scroll;
-        border-right: 2px solid rgba(255,255,255, 0.1);
-        padding: 10px;
-      }
-
-      main .maps{
-        width: 30%;
-      }
-
-      paper-card{
-        @apply(--layout-wrap);
-        --paper-card-background-color: rgba(0, 0, 0,.2);
-        --paper-card-header-color: #E5E8F1;
-        color: #E5E8F1;
-        font-size: 14px;
-        font-weight: 100;
-        --paper-card: {
-          width: 340px;
-          margin: 10px;
-        };
-      }
-      @media screen and (max-width: 600px){
-        :host{
-          height: 100%;
-        }
-        
-        main .sidenav{
-          width: 64px;
-        }
-
-        main .sidenav a span{
-        visibility: hidden;
-       }
-
-
-        paper-card{
-        --paper-card: {
-          width: 320px;
-          margin: 0 0 10px 0;
-        };
-      }
-    }
-
-
-
-
-
-
-      paper-card .card-title img{
-        width: 100%;
-      }
-      paper-card .card-actions{
-        font-weight: 500;
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-      }
-      paper-card .card-actions .pricing{
-        line-height: 50px;
+      div.title_get-app{
+        display: flex;
+        @apply(--layout-center-justified);
         position: relative;
-        @apply(--layout-center);
+        margin-top: 20px;
+        text-transform: uppercase;
       }
-      paper-card .card-content{
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-        border-bottom: 1px solid #fff;
-        padding: 0 20px;
+      /*paper-iten et iron icon configuration*/
+      paper-item{
+        --paper-item: {
+          height: 38px;
+          @apply(--font-color);
+          border-bottom: 1px solid rgba(44,48,57,1.0);
+          box-shadow: 1px 0 1px 0.5px rgba(0,0,0,0.18);
+        };
+      }
+      paper-item a{
+        @apply(--font-color);
+        text-decoration: none;
+      }
+      paper-item user-data{
+        display: flex;
+        @apply(--layout-center);
+        text-overflow: ellipsis;
+      }
+      iron-icon, i{
+        font-size: 22px;
+        @apply(--layout-center);
+        --iron-icon-fill-color: #c1c6cc;
+        --iron-icon-width: 22px;
+        --iron-icon-height: 22px;
+        margin-right: 5px;
+
       }
 
-      paper-card .card-content .namePost{
-        line-height: 36px;
+       div.get-app{
+        position: relative;
+        left: -30px;
+        margin-bottom: 30px;
       }
-      paper-card .description{
-        padding: 0 10px;
+      /*social medias*/
+      app-drawer div.social{
+        position: relative;
+        left: -40px;
       }
-      paper-card .address{
+      div.social ul{
+        display: flex;
+        apply(--layout-horizontal);
+      }
+      div.social li{
+        margin: 20px;
+      }
+      div.social i{
+        background-color: #2babb4;
+        font-size: 18px;
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        @apply(--layout-center-justified);
+        @apply(--layout-center);
+        border: 0 solid rgba(53,57,66,1.0);
+        padding: 5px;
+        border-radius: 50%;
+      }
+      div.social i:hover{
+        background-color: transparent;
+        border: 1px solid #fff;
+      }
+      /*brand styling*/
+      app-drawer div.brand{
         font-size: 14px;
         font-weight: 300;
-        padding: 10px; 
+        padding-left: 10px;
       }
-      paper-button{  
-       --paper-button: {
-        background-color: #c0392b;
-        margin: 0;
-       };
-       --paper-button-ink-color : #c0392b;
-      }
+      /**
+      *
+      *
+      *
+      */
+      /*main grid data*/
+  main i{
+    font-size: 20px;
+  }
+  main{
+    @apply(--layout-horizontal);
+    @apply(--layout-wrap);
+    @apply(--layout-center-justified);
+    display: flex;
+    font-size: 14px;
+    padding: 5px;
+  }
+  main paper-card{
+    margin: 10px;
+   --paper-card:{
+    width: 270px;
+    height: 400px;
+   }; 
+   --paper-card-content:{
+      display: flex;
+      @apply(--layout-center);
+      background-color: rgba(241, 243, 242, 1.0);
+      margin: 0;
+      padding: 5px;
+      overflow: hidden;
+      hyphens: auto;
+      white-space: pre-wrap;
+      height: 60px;
+      font-size: 12px;
+      font-weight: 300;
+    };
+     --paper-card-actions:{
+      display: flex;
+      position: relative;
+      @apply(--layout-justified);
+      @apply(--layout-center);
+      font-weight: 500;
+      height: 50px;
+    };
+  }
+  main paper-card .card-title img{
+    width: 100%;
+    height: 160px;
+  }
+  main paper-card div.namePost{
+    display: flex;
+    height: 30px;
+    font-weight: 500;
+    @apply(--layout-justified);
+    overflow: hidden;
+    hyphens: auto;
+    white-space: pre-wrap;
+  }
+  main paper-card div.namePost div{
+    padding: 5px 10px 5px 10px;
+  }
+  main paper-card paper-button{  
+    --paper-button: {
+      background-color: #2babb4;
+      margin: 0;
+      color: #fff;
+      padding: 5px;
+    };
+    --paper-button-ink-color : #2babb4;
+  }
 
+
+  /**
+  *
+  *
+  */
+
+  /*media queries*/
+  @media all and (min-width : 1024px){
+    main paper-card{
+      margin: 5px;
+     --paper-card:{
+      width: 240px;
+      height: 10%;
+     }; 
+   }
+   engine-data{
+        display: flex;
+      }
+  }
+  @media all and (min-width : 1224px) {
+    main paper-card{
+      margin: 5px;
+     --paper-card:{
+      width: 280px;
+      height: 10%;
+     }; 
+   }
+  }
+  @media only screen and (min-height: 768px){
+        app-drawer div.brand{
+        position: absolute;
+        bottom: 100px;
+        margin-bottom: 15px;     
+      }
+    
+      app-drawer div.social{
+        position: absolute;
+        bottom: 180px;
+        right: 25px;
+        margin-bottom: 15px;
+      }
+  }
 
     </style>
 
+   <app-drawer-layout>
 
-    <paper-header-panel class="flex">
+    <app-drawer>
+      <app-toolbar>
+      </app-toolbar>
 
+      <div>
+        <a href="#"><paper-item><iron-icon icon="search"></iron-icon>SEARCH</paper-item></a>
+        <a href="#"><paper-item><iron-icon icon="favorite-border"></iron-icon>FAVORITE</paper-item></a>
+        <a href="#"><paper-item><iron-icon icon="account-balance-wallet"></iron-icon>CURRENCY</paper-item></a>
+        <a href="#"><paper-item><iron-icon icon="language"></iron-icon>LANGUAGE</paper-item></a>
+        <a href="#"><paper-item><iron-icon icon="more-horiz"></iron-icon> MORES</paper-item></a>
+        <paper-item><user-data></user-data></paper-item>
+      </div>
+      <div class="title_get-app">Get App</div>
+      <div class="get-app">
+        <ul>
+          <li><img src="../images/play-store-badge_en.png"></li>
+          <li><img src="../images/app-store-badge_en.png"></li>
+        </ul>
+      </div>
 
-      <paper-toolbar>
+      <div class="social">
+        <ul>
+          <li><a><i class="ion-social-twitter"></i></a></li>
+          <li><a><i class="ion-social-facebook"></i></a></li>
+          <li><a><i class="ion-social-youtube"></i></a></li>
+        </ul>
+      </div>
 
-        <div>
-          WHERE
-        </div>
+      <div class="brand">
+        <p>Where, Inc.<br>Copyright 2016 |<br>All right reserved</p>
+      </div>
 
-        <div class="subnav">
-          <div><a href="#options/">Become Host</a></div>
-          <div></div>
-          <div>
-          <span>Aaron D.</span>
-          </div>
-        </div>
+    </app-drawer>
+    
 
-      </paper-toolbar>
+    <app-header-layout>
 
+      <app-header fixed shadow>
+        <app-toolbar>
+          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+          <div main-title></div>
+          <become-host></become-host><user-data></user-data>
+        </app-toolbar>
+      </app-header>
+      <div class="main-content">
 
+        <main>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+            <paper-card>
+              <div class="card-title">
+                <img src="../images/1ec428ce_original.jpg">
+              </div>
+              <div class="namePost">
+                <div>Name's house</div>
+                <div><i class="ion-android-share-alt"></i></div>
+              </div>
+              <div class="card-content"><span>{{address}}</span></div>
+              <div class="card-actions">
+                <div class="pricing">1000p/night</div>
+                <paper-button raised>{{book}}</paper-button>
+              </div>
+            </paper-card>
+        </main>
+        <engine-data></engine-data>
+      </div>
 
-      <main>
-        <div class="sidenav">
-          <div class="search">
-            <a><paper-icon-button icon="search"></paper-icon-button><span>Search</span></a>
-          </div>
-          <div class="filters">
-            <a><paper-icon-button icon="filter-list"></paper-icon-button><span>Filters</span></a>
-          </div>
-          <div class="wishs">
-          <a><paper-icon-button icon="favorite"></paper-icon-button><span>Favorite</span></a>
-          </div>
-          <div class="currencies">
-          <a><paper-icon-button icon="account-balance-wallet"></paper-icon-button><span>Currency</span></a>
-          </div>
-          <div class="mores">
-          <a><paper-icon-button icon="help"></paper-icon-button><span>More</span></a>
-          </div>
-          <div class="get-app">
-          <span>Get App</span>
-          <!-- <ul>
-            <li><a href="#"><img src="images/appstore.png"></a></li>
-            <li><a href="#"><img src="images/googleplay.png"></a></li>
-          </ul>
-          -->
-          </div>
-          <!--
-          <div class="social">
-            <a><i class="ion-social-twitter"></i></a>
-            <a><i class="ion-social-facebook"></i></a>
-            <a><i class="ion-social-youtube"></i></a>
-          </div>-->
+    </app-header-layout>
 
-          <div class="footer-bot">Where, Inc. <br>Coyright 2016 | <br>All right reserved</div>
-        </div>
-
-        <div class="main-content">
-        <div class="grid">
- 
-        <paper-card>
-          <div class="card-title">
-            <img src="images/439b54b4_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon="share"></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/0766c5e8_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/ccabaf77_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/d2aec549_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/0d20d386_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/68f92799_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/bf079c42_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        <paper-card>
-          <div class="card-title">
-            <img src="images/1ec428ce_original.jpg">
-          </div>
-          <div class="card-content">
-              <div class="namePost">Name's house</div>
-              <div><paper-icon-button icon=""></paper-icon-button></div>
-          </div>
-          <div class="description">
-            <p>Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.</p>
-          </div>
-          <div class="address">Adresse</div>
-          <div class="card-actions">
-            <div class="pricing">1000p/night</div>
-            <paper-button raised>Reserve</paper-button>
-          </div>
-        </paper-card>
-
-        </div>
-        
-      </main>
-
-
-      <div class="maps"></div>
-
-
-    </paper-header-panel>
-    <app-location route="{{route}}" use-hash-as-path></app-location>
-    <app-route route="{{route}}" pattern="/options" data="{{data}}" tail="{{tail}}"></app-route>
-
+  </app-drawer-layout>
 
   </template>
 
@@ -467,7 +521,14 @@
       is: 'where-app',
 
       properties: {
-        
+        address: {
+          type: String,
+          value: 'Mr S Tan 200 Broadway Av WEST BEACH HORMAHEB HSHSF SIOA SA 5024 AUSTRALIA'
+        },
+        book: {
+          type: String,
+          value: 'BOOK'
+        }
       },
 
     });

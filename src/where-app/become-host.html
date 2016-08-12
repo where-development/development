@@ -4,48 +4,39 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-<dom-module id="user-data">
+<dom-module id="become-host">
 	<template>
 	
 	<style is="custom-style" include="iron-flex iron-flex-alignment">
 
-	iron-icon{
-		--iron-icon-width: 32px;
-		--iron-icon-height: 32px;
-	}
 	.usermain{
-		width: 150px;
-		
+		display: flex;
 		font-weight: 200;
-		font-size: 13px;
+		font-size: 14px;
 		@apply(--layout-horizontal);
 	}
 	.usermain .become_host{
-			margin-right: 0;
-		}
+		margin-right: 10px;
 	}
-	.usermain .isUser span{
-		text-overflow: ellipsis;
+	paper-button{
+		--paper-button: {
+			background-color: #2babb4;
+			color: #fff;
+			padding: 10px;
+		};
 	}
 		
 	</style>
 
 	<div class="usermain">
-		<div class="idUser">
-			<iron-icon icon="account-circle"></iron-icon>
-			<span>{{username}}</span>
-		</div>
+		<div class="become_host"><paper-button raised>Become Host</paper-button></div>
 	</div>
 
 	</template>
 	<script>
 		Polymer({
-			is: 'user-data',
+			is: 'become-host',
 			properties: {
-				username: {
-					type: String,
-					value: 'Aaron D.'
-				}
 			},
 		});
 	</script>
