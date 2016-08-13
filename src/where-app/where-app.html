@@ -45,6 +45,12 @@
       engine-data{
         display: none;
       }
+      .app-toolbar-hoster{
+        display:flex;
+        @apply(--layout-end-justified);
+        position: relative;
+        left:5%;
+      }
 
       div.main-content{
         display: flex;
@@ -334,7 +340,7 @@
         <app-toolbar>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
           <div main-title></div>
-          <become-host></become-host><user-data></user-data>
+          <div class="app-toolbar-hoster"><become-host></become-host><user-data></user-data></div>
         </app-toolbar>
       </app-header>
       <div class="main-content">
